@@ -7,12 +7,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build Docker image
+    - name: 'Build Docker image'
       run: docker build -t iab-reader:latest .
 
-    - name: Test Docker image
+    - name: 'Test Docker image'
       run: docker run -v "$(pwd)/tests/assets:/assets" --rm iab-reader:latest /assets/silence.iab
 
+    - name: 'Login to GitHub Container Registry'
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{github.actor}}
+        password: ${{secrets.GITHUB_TOKEN}}
+    - name: 'Push Docker image'
+      run: |
+        docker tag iab-reader:latest ghcr.io/sherpadown/iab-reader:latest
+        docker push ghcr.io/sherpadown/iab-reader:latest
