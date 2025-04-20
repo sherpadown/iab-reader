@@ -1,0 +1,14 @@
+[project]
+name = "iab-reader"
+version = "0.1.0"
+description = "Immersive Audio Bitstream (IAB) Reader"
+authors = [{name="BGI", email="mxf-reader@sherpadown.net"}]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+	"bitstring",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
