@@ -16,7 +16,7 @@ $ source .venv/bin/activate
 $ uv sync
 ```
 
-#### Using
+### Using
 
 ```
 $ python -m iab_reader 
@@ -86,5 +86,20 @@ $ python -m iab_reader tests/assets/transformers.iab/ | grep '+++'
 +++ tests/assets/transformers.iab//005.iab
 +++ tests/assets/transformers.iab//006.iab
 (...)
+```
+
+
+
+### Use with Docker
+
+```
+$ make docker.build         # build docker
+$ make docker.run.tests     # run tests
+```
+
+or
+
+```
+$ docker run -v "/local/path/assets:/assets" -it --rm iab-reader:latest -f /assets/iab
 ```
 
