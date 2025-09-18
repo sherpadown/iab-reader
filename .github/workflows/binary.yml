@@ -1,0 +1,21 @@
+name: Binary
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: "Binary (via nuitka)"
+      run: |
+        pip install nuitka
+        make bin
