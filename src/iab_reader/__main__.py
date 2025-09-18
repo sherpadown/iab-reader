@@ -1122,12 +1122,12 @@ if OUTFILE:
 # check args
 if len(sys.argv) < 2:
 	print("Usage: file.iab or directory contains iab files")
-	exit(1)
+	sys.exit(1)
 
 # Parse one file
 if os.path.isfile(sys.argv[1]):
 	bitstream_parser(sys.argv[1])
-	exit(0)
+	sys.exit(0)
 
 # Parse directory
 for directory in sys.argv[1:]:
