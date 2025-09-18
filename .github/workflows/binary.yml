@@ -17,8 +17,15 @@ jobs:
 
     - name: "Binary (via nuitka)"
       run: |
+        pip install .
         pip install nuitka
         make bin
+
+    - name: "Run & tests"
+      run: |
+        file ./iab-reader
+        ldd ./iab-reader
+        ./iab-reader tests/assets/silence.iab/000.iab
 
     - name: 'Upload artifact'
       uses: actions/upload-artifact@v4
